@@ -19,5 +19,5 @@ const paiment = sequelize.define('paiment', {
         allowNull: false,
       },
       // need to add the forgeinkeys
-  });
+  },{ freezeTableName: true, timestamps: true });
   module.exports={paiment}

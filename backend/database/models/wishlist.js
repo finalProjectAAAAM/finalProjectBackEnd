@@ -6,5 +6,5 @@ const wishlist = sequelize.define('wishlist', {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
-    }})
+    }},{ freezeTableName: true, timestamps: false })
     module.exports ={wishlist}

@@ -12,5 +12,5 @@ const commentuseroffer = sequelize.define('commentuseroffer', {
       allowNull: false,
     },
     // need to add forgien key id offer
-})
+},{ freezeTableName: true, timestamps: false })
 module.exports={commentuseroffer}

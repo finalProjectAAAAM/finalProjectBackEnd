@@ -12,7 +12,7 @@ const offer = sequelize.define('offer', {
       allowNull: false,
     },
     startday: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     duration:{
@@ -31,7 +31,6 @@ const offer = sequelize.define('offer', {
         type : DataTypes.INTEGER,
         allowNull:false,
     },
-
     status : {
         type : DataTypes.STRING,
         allowNull : false,
@@ -52,11 +51,13 @@ const offer = sequelize.define('offer', {
         type : DataTypes.INTEGER,
         allowNull : false,
     },
+    paipers:{
+        type : DataTypes.STRING,
+        allowNull : false,
+    },
     reservision : {
         type : DataTypes.INTEGER,
         defaultValue : 0
     },
-    
-
-  });
+  },{ freezeTableName: true, timestamps: false });
   module.exports={offer}

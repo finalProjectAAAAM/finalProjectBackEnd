@@ -41,5 +41,5 @@ const packageuseredit = sequelize.define('packageuseredit', {
     },
     
 
-  });
+  },{ freezeTableName: true, timestamps: false });
   module.exports={packageuseredit}
