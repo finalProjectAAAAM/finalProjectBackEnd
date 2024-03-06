@@ -27,5 +27,6 @@ const admin = sequelize.define('admin', {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-  });
+    
+  },{ freezeTableName: true, timestamps: false });
   module.exports={admin}

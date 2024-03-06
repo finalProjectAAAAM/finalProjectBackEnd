@@ -39,5 +39,6 @@ const userProvider = sequelize.define('userProvider', {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-  });
+  },{ freezeTableName: true, timestamps: false });
+  //need to enable the time stambe for then i get the notification for that creation
   module.exports={userProvider}

@@ -40,5 +40,5 @@ const package = sequelize.define('package', {
         defaultValue : 0
     },
 
-  });
+  },{ freezeTableName: true, timestamps: false });
   module.exports={package}

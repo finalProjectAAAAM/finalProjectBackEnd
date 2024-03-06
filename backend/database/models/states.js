@@ -1,19 +1,16 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../connection')
-const imagesoffer = sequelize.define('imagesOffer', {
-    idimagesoffer: {
+const state = sequelize.define('state', {
+    idstate: {
       type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
     },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    // 
-    
-    // need to add forgien key
+    namestate : {
+        type : DataTypes.STRING,
+        allowNull : false,
+
+    }
 },{ freezeTableName: true, timestamps: false })
-module.exports={imagesoffer}
-    
+module.exports={state}

@@ -13,5 +13,5 @@ const supcategory = sequelize.define('supcategory', {
     },
     
     // need to add forgien key of maincategory
-})
+},{ freezeTableName: true, timestamps: false })
 module.exports={supcategory}

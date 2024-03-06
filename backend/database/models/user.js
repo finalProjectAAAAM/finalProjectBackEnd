@@ -39,10 +39,9 @@ const user = sequelize.define('user', {
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-  });
+  },{ freezeTableName: true, timestamps: false });
   
-  // Define Associations if any
-  // For example, if user has associations with other tables, define them here
+  // need to enable the time stambe for the creation of the user ! 
   
 
 module.exports={user}  

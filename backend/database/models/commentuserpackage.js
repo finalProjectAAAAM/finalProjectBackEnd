@@ -12,6 +12,6 @@ const commentuserpackage = sequelize.define('commentuserpackage', {
       allowNull: false,
     },
     // need to add forgien key id package
-})
+},{ freezeTableName: true, timestamps: false })
 module.exports={commentuserpackage}
     

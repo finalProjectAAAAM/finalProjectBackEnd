@@ -14,9 +14,9 @@ const {supcategory}  =require('./models/supcategory');
 const {user_has_package} = require('./models/user_has_package');
 const {wishlist} = require('./models/wishlist')
 const {package_edit}=require('./models/package_edit')
-
+const {state} = require('./models/states')
 // reation between useProvider & offers ! 
-userProvider.hasMany(offer)
+userProvider.hasMany(offer, {onDelete : 'cascade'})
 offer.belongsTo(userProvider)
 
 // reation between useProvider & package ! 
@@ -77,12 +77,25 @@ user_has_package.hasOne(paiment)
 paiment.belongsTo(user_has_package)
 
 
+// admin can add many states 
+admin.hasMany(state)
+state.belongsTo(admin)
+
+offer.hasOne(state)
+state.belongsTo(offer)
+
+package.hasOne(state)
+state.belongsTo(package)
+
 
 
 
   // Sync Database
-  sequelize.sync({ force:true }) // Set force to true if you want to drop and recreate tables
+  sequelize.sync({ alter : true}) // Set force to true if you want to drop and recreate tables
     .then(() => {
+      // user.bulkCreate([{
+      //   na
+      // }])
       console.log('Database synchronized successfully.');
     })
     .catch((error) => {

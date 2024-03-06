@@ -7,5 +7,5 @@ const package_edit = sequelize.define('package_edit', {
       autoIncrement: true,
       primaryKey: true,
     },
-  });
+  },{ freezeTableName: true, timestamps: false });
   module.exports={package_edit}
