@@ -9,7 +9,18 @@ const insertoffer = async(data)=>{
     console.log(err);
    }
 }
+const updateoffer = async (data , id)=>{
+     try{
+          const upoffer = await offer.update(data,{where : {idoffer : id}})
+          return upoffer
+     }
+     catch(err){
+          console.log(err , 'err in updating the offer');
+     }
+}
+
 
 module.exports = {
-     insertoffer
+     insertoffer,
+     updateoffer
 }

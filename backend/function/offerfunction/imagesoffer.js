@@ -9,7 +9,17 @@ const insertimagesoffer = (data, offerId) => {
     });
     return Promise.all(imagePromises);
 };
+const updateimages = (data , Id)=>{
+    const upimagesPromise = data.map(ele=>{
+        return imagesoffer.update(
+            { image: ele.image },
+            { where: { offerIdoffer: Id } }
+        );
+    })
+    return Promise.all(upimagesPromise)
+}
 
   module.exports={
-  insertimagesoffer
+  insertimagesoffer,
+  updateimages
   }

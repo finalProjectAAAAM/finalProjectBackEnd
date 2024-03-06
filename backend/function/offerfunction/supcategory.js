@@ -9,7 +9,13 @@ const insertsupcategory = (data, mainId) => {
 
     return Promise.all(supcategoryinsert);
 };
-
+const updatesupcategory = (data , id)=>{
+    const updatesupcategory = data.map(ele=>{
+        return supcategory.update(ele.supcategory,{where : {maincategoryIdmaincategory : id}})
+    })
+    return Promise.all(updatesupcategory)
+}
 module.exports={
     insertsupcategory,
+    updatesupcategory,
 }
