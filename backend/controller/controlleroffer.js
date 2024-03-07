@@ -1,10 +1,11 @@
-const { insertoffer ,  updateoffer } = require("../function/offerfunction/offerfunction");
+const { insertoffer ,  updateoffer, getoffer, deleteoffer } = require("../function/offerfunction/offerfunction");
 const { insertsupcategory ,updatesupcategory } = require("../function/offerfunction/supcategory");
 const { insertcategory ,updatecategory } = require("../function/offerfunction/maincategory");
 const { insertimagesoffer ,updateimages } = require("../function/offerfunction/imagesoffer");
 
 module.exports = {
   createoffer: async (req, res) => {
+
     const obj = {
       offer: {
         title: req.body.offer.title,
@@ -46,7 +47,6 @@ module.exports = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
-
   // the offer that will be updated not allwed to update the main category ! 
   updateoffer : async (req , res)=>{
     const offerId = req.params.id;
@@ -82,11 +82,22 @@ module.exports = {
           const updatemain = await updatecategory(obj.maincategory , offerId)
           console.log(updatemain ,'sdldsljdslsdjdls');
           await updateimages(obj.imagesOffer , offerId)
-          // await updatesupcategory(obj.supcategory,updatemain.dataValues.idmaincategory)
+          await updatesupcategory(obj.supcategory,updatemain.dataValues.idmaincategory)
         res.status(201).json(upoffer)
     }
     catch(err){
       console.log(err ,"err in updating the offer !");
     }
+  },
+
+  getoffer :async  (req,res)=>{
+    const results = await getoffer(req.params.id)
+
+    res.status(200).json(results)
+  },
+  deleteoffer : async(req,res)=>{
+    const results = await deleteoffer(req.params.id)
+    res.status(204).send('deleted')  
   }
+  
 };

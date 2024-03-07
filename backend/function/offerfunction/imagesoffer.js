@@ -9,15 +9,33 @@ const insertimagesoffer = (data, offerId) => {
     });
     return Promise.all(imagePromises);
 };
-const updateimages = (data , Id)=>{
-    const upimagesPromise = data.map(ele=>{
-        return imagesoffer.update(
-            { image: ele.image },
-            { where: { offerIdoffer: Id } }
-        );
-    })
-    return Promise.all(upimagesPromise)
-}
+const updateimages = async (data, offerId) => {
+    try {
+        //  Delete Existing Images
+        await imagesoffer.destroy({ where: { offerIdoffer: offerId } });
+
+        //  Insert New Images
+        const createImagesPromise = data.map(async ele => {
+            await imagesoffer.create({
+                image: ele.image,
+                offerIdoffer: offerId,
+            });
+        });
+
+        // Wait for all inserts to complete
+        await Promise.all(createImagesPromise);
+
+        console.log('Images updated successfully');
+    } catch (error) {
+       
+        console.error('Error updating images:', error);
+    }
+};
+
+
+
+
+
 
   module.exports={
   insertimagesoffer,
