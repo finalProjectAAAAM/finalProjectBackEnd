@@ -31,6 +31,10 @@ const package = sequelize.define('package', {
     rate : {
         type : DataTypes.INTEGER,
     },
+    imagemain : {
+      type :DataTypes.STRING,
+      allowNull:true
+    },
     places : {
         type : DataTypes.INTEGER,
         allowNull : false,
