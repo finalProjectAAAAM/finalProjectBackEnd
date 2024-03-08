@@ -1,13 +1,13 @@
-const{package_has_offer}=require('../../database/models/package_has_offer');
+const {package_edit}=require('../../database/models/package_edit');
 
-const createcomboofpackage = async (data ,idpackage)=>{
+const createcombopcedit = async (data ,idpackage)=>{
    try{
     console.log(data,'data from the join table ');
     const combo = data.map(ele=>{
-        return package_has_offer.create(
+        return package_edit.create(
             {
-                offerIdoffer : ele.offer,
-                packageIdpackage : idpackage
+                offerIdoffer : ele.dataValues.offerIdoffer,
+                packageusereditIdpackage : idpackage
             }
         )
     })
@@ -19,8 +19,8 @@ const createcomboofpackage = async (data ,idpackage)=>{
 }
 const updatecomboofpackage = async (data,idpackage)=>{
     try{
-        await package_has_offer.destroy({where:{packageIdpackage : idpackage}})
-        const updatepackage = await createcomboofpackage(data,idpackage)
+        await package_edit.destroy({where:{packageIdpackage : idpackage}})
+        const updatepackage = await createcombopcedit(data,idpackage)
         return updatepackage
         }
     catch(err){
@@ -29,7 +29,7 @@ const updatecomboofpackage = async (data,idpackage)=>{
 }
 const getcomboofpackage = async (idpackage)=>{
     try{
-        const combo = await package_has_offer.findAll({where:{packageIdpackage : idpackage}})
+        const combo = await package_edit.findAll({where:{packageIdpackage : idpackage}})
         return combo
     }
     catch(err){
@@ -38,7 +38,7 @@ const getcomboofpackage = async (idpackage)=>{
 }
 
 module.exports={
-    createcomboofpackage,
+    createcombopcedit,
     updatecomboofpackage,
     getcomboofpackage,
 }

@@ -7,8 +7,10 @@ app.use(express.json());
 app.use(cors());
 const RouterPackage = require('./router/routerpackage')
 const Routeroffer = require('./router/routeroffer')
+const Routerpcuser = require('./router/routerpcuser');
 app.use('/userProvider',Routeroffer)
 app.use('/cp',RouterPackage)
+app.use('/user',Routerpcuser)
 // app.use('/package',)
 app.listen(port, () => {
     console.log("the server is lessting on ", port);

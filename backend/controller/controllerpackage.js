@@ -1,4 +1,4 @@
-const {createPackage,deletepackage,getpackage,updatepackage,  } = require('../function/packagefunction/packagefunction');
+const {createPackage,deletepackage,getpackage,updatepackage,getpackagedetails  } = require('../function/packagefunction/packagefunction');
 const {createcomboofpackage,updatecomboofpackage } =require('../function/packagefunction/package_has_offers')
 const {package} = require('../database/models/package')
 module.exports={
@@ -94,6 +94,15 @@ module.exports={
        catch(err){
         console.log(err,"err in geting the details ! ");
        }
+    },
+    Getpcdetails:async(req,res)=>{
+        try{
+            const result = await getpackagedetails(req.params.id)
+            res.status(200).json(result)
+        }
+        catch(err){
+            console.log(err,"err in geting the details! ");
+        }
     }
 
 }
