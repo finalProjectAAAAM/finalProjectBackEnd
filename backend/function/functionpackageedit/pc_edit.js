@@ -17,16 +17,27 @@ const createcombopcedit = async (data ,idpackage)=>{
     console.log(err);
    }
 }
-const updatecomboofpackage = async (data,idpackage)=>{
-    try{
-        await package_edit.destroy({where:{packageIdpackage : idpackage}})
-        const updatepackage = await createcombopcedit(data,idpackage)
-        return updatepackage
-        }
-    catch(err){
-        console.log(err,"err in updating the package from function !");
+const updatecomboofpackage = async (data, idpackage) => {
+    try {
+        // Delete existing entries related to the package
+        await package_edit.destroy({ where: { packageusereditIdpackage: idpackage } });
+
+        // Create new entries for updated data
+        const updateoffers = data.map(ele => {
+            return package_edit.create({
+                offerIdoffer: ele,
+                packageusereditIdpackage: idpackage
+            });
+        });
+
+        
+        await Promise.all(updateoffers);
+    } catch (err) {
+        console.log(err, "Error in updating the package from function!");
+        throw err; 
     }
-}
+};
+
 const getcomboofpackage = async (idpackage)=>{
     try{
         const combo = await package_edit.findAll({where:{packageIdpackage : idpackage}})
@@ -36,6 +47,7 @@ const getcomboofpackage = async (idpackage)=>{
         console.log(err);
     }
 }
+
 
 module.exports={
     createcombopcedit,

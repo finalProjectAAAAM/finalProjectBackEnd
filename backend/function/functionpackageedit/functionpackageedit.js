@@ -1,8 +1,12 @@
 const {packageuseredit}=require('../../database/models/packageuseredit');
 const{package_edit}=require('../../database/models/package_edit');
+const {offer}=require('../../database/models/offer');
+const{imagesoffer}=require('../../database/models/imagesoffer');
+const {maincategory}=require('../../database/models/maincategory');
+const{supcategory}=require('../../database/models/supcategory'); 
 const {getpackagedetails}=require('../packagefunction/packagefunction');
 const {getcomboofpackage}=require('../packagefunction/package_has_offers');
-const {createcombopcedit} = require('./pc_edit');
+const {createcombopcedit,updatecomboofpackage} = require('./pc_edit');
 
 const createpackageuser = async (idpackage , iduser)=>{
     try{
@@ -20,6 +24,43 @@ const createpackageuser = async (idpackage , iduser)=>{
     }
 }
 
+const getpcuser = async (idpackage, iduser) => {
+    try {
+        const result = await packageuseredit.findAll({
+            where: { 
+                idpackage: idpackage,
+                userIduser: iduser 
+            },
+            include: [{
+                model: offer,
+                include: [
+                    imagesoffer,
+                    { model: maincategory, include: supcategory }
+                ]
+            }]
+        });
+        return result;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
+};
+const updatepcuser = async function (data,idpackage) {
+   
+
+    try {
+        const updatepackage = await updatecomboofpackage(data,idpackage);
+        return updatepackage;
+    } catch (err) {
+        console.log(err, "Error in updating the package from function!");
+        throw err; 
+    }
+}
+
+
+
 module.exports ={
     createpackageuser,
+    getpcuser,
+    updatepcuser,
 }
