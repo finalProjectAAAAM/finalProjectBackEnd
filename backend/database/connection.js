@@ -4,3 +4,9 @@ const sequelize = new Sequelize("application", "root", "24072003", {
     dialect: "mysql",
   });
   module.exports = sequelize
+const { Sequelize } = require("sequelize");
+const sequelize = new Sequelize("appfinal", "root", "21018965", {
+    host: "localhost",
+    dialect: "mysql",
+  });
+  module.exports = sequelize

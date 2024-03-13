@@ -27,8 +27,18 @@ const updatecomboofpackage = async (data,idpackage)=>{
         console.log(err,"err in updating the package from function !");
     }
 }
+const getcomboofpackage = async (idpackage)=>{
+    try{
+        const combo = await package_has_offer.findAll({where:{packageIdpackage : idpackage}})
+        return combo
+    }
+    catch(err){
+        console.log(err);
+    }
+}
 
 module.exports={
     createcomboofpackage,
-    updatecomboofpackage
+    updatecomboofpackage,
+    getcomboofpackage,
 }
