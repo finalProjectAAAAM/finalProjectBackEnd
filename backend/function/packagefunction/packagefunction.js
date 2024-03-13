@@ -36,6 +36,7 @@ const getpackage= async (id)=>{
    }
     
 }
+
 const getpackagedetails= async (id)=>{
     try{
         const  detailtspackage = await package.findAll({where: {idpackage:id}}
@@ -46,6 +47,7 @@ const getpackagedetails= async (id)=>{
         console.log(err);
     }
 }
+
 const updatepackage = async(data,idpackage)=>{
     try{
         const updatepackage = await package.update(data,{where:{idpackage : idpackage}})
@@ -60,6 +62,8 @@ module.exports={
     createPackage,
     deletepackage,
     getpackage,
+
     updatepackage,
     getpackagedetails,
+
 }

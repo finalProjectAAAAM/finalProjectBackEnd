@@ -25,8 +25,10 @@ userProvider.hasMany(package , {onDelete :'cascade'} )
 package.belongsTo(userProvider)
 
 // packages has MM realtion with offers ! 
+
 offer.belongsToMany(package,{through : package_has_offer , onDelete : 'cascade'})
 package.belongsToMany(offer,{through : package_has_offer ,onDelete : 'cascade'})
+
 
 // offer relations ! 
 
@@ -52,10 +54,12 @@ package.belongsToMany(user , {through : wishlist})
 
 
 // user & package of the userProvider   
+
 user.belongsToMany(package , {through : user_has_package , onDelete :'cascade'})
 //-----------need to more see this with -------------
 package.belongsToMany(user , {through : user_has_package , onDelete :'cascade'})
 packageuseredit.hasMany(user_has_package,{onDelete :'cascade'})
+
 
 // package & comment ------------
 package.hasMany(commentuserpackage)
@@ -68,7 +72,9 @@ user.hasMany(packageuseredit)
 packageuseredit.belongsTo(user)
 
 // edited packages has MM realtion with offers ! 
+
 offer.belongsToMany(packageuseredit,{through : package_edit , onDelete :'cascade'})
+
 packageuseredit.belongsToMany(offer,{through : package_edit })
 
 
@@ -93,9 +99,11 @@ state.belongsTo(package)
   sequelize.sync({ alter: true}) // Set force to true if you want to drop and recreate tables
     .then(() => {
       // user.bulkCreate([{
+
       //   na 
       // }])
       console.log('Database synchronized successfully.'); 
+
     })
     .catch((error) => {
       console.error('Error syncing database:', error);
