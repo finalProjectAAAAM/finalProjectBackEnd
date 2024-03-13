@@ -26,7 +26,7 @@ const updatecategory = async (data , offerid)=>{
 
 
     try{
-        
+
         await  maincategory.destroy({where:{offerIdoffer:offerid}})
             if(data == 1 ){
                 const updatemain = await maincategory.create({ namecategory: "solo" ,offerIdoffer:offerid})
