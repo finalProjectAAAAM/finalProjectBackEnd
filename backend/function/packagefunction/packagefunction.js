@@ -8,7 +8,7 @@ const { supcategory } = require("../../database/models/supcategory");
 const createPackage =  async (data)=>{
     try{
         return package.create(data)
-    }
+    } 
     catch(err){
         console.log(err,"err in create a package !");
     }
@@ -46,9 +46,24 @@ const updatepackage = async(data,idpackage)=>{
     }
 }
 
+const getpackageforuser = async (location, maincate) => {
+    try {
+        console.log(location,maincate);
+        const result = await package.findAll({ where: { location: location, maincategory: maincate } });
+        console.log('Number of packages found:', result.length);
+        return result;
+    } catch (err) {
+        console.error('Error in getpackageforuser:', err);
+        throw err; // Rethrow the error to handle it further up the call stack if needed
+    }
+};
+
+
+
 module.exports={
     createPackage,
     deletepackage,
     getpackage,
-    updatepackage
+    updatepackage,
+    getpackageforuser
 }
