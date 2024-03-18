@@ -77,5 +77,6 @@ module.exports={
     deletepackage,
     getpackage,
     updatepackage,
+    getpackagedetails,
     getpackageforuser
 }
