@@ -20,6 +20,7 @@ const updateoffer = async (data, id) => {
   }
 };
 const getoffer = async (id) => {
+
   return offer.findAll({
     where: { idoffer: +id },
     include: [{ model: imagesoffer, attributes: ["image"]}, { model: maincategory , include: supcategory}],
@@ -29,6 +30,7 @@ const getoffer = async (id) => {
 const deleteoffer = async (id) => {
   return offer.destroy({ where: { idoffer: +id } });
 };
+
 module.exports = {
   insertoffer,
   updateoffer,

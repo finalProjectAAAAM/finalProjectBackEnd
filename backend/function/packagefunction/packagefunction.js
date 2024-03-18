@@ -8,7 +8,7 @@ const { supcategory } = require("../../database/models/supcategory");
 const createPackage =  async (data)=>{
     try{
         return package.create(data)
-    }
+    } 
     catch(err){
         console.log(err,"err in create a package !");
     }
