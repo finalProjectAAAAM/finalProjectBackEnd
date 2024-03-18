@@ -1,6 +1,4 @@
-
-const {createPackage,deletepackage,getpackage,updatepackage,getpackagedetails  } = require('../function/packagefunction/packagefunction');
-
+const {createPackage,deletepackage,getpackage,updatepackage, getpackageforuser } = require('../function/packagefunction/packagefunction');
 const {createcomboofpackage,updatecomboofpackage } =require('../function/packagefunction/package_has_offers')
 const {package} = require('../database/models/package')
 module.exports={
@@ -74,6 +72,12 @@ module.exports={
               entertainment : req.body.entertainment,
               sport : req.body.sport,
               art :req.body.art,
+              maincategory : req.body.maincategory,
+              music : req.body.music,
+              food : req.body.food,
+              entertainment : req.body.entertainment,
+              sport : req.body.sport,
+              art :req.body.art,
               // rate: null, 
               // reservision: 0
   
@@ -125,9 +129,9 @@ module.exports={
         console.log(err,"err in geting the details ! ");
        }
     },
-    Getpcdetails:async(req,res)=>{
+    GetPackgeofUser : async (req, res)=>{
         try{
-            const result = await getpackagedetails(req.params.id)
+            const result = await getpackageforuser(req.body.location ,req.body.maincategory) ;
             res.status(200).json(result)
         }
         catch(err){
@@ -135,5 +139,4 @@ module.exports={
 
         }
     }
-
 }

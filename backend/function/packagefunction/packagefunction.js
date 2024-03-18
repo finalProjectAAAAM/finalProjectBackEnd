@@ -36,18 +36,6 @@ const getpackage= async (id)=>{
    }
     
 }
-
-const getpackagedetails= async (id)=>{
-    try{
-        const  detailtspackage = await package.findAll({where: {idpackage:id}}
-        )
-        return detailtspackage
-    }
-    catch(err){
-        console.log(err);
-    }
-}
-
 const updatepackage = async(data,idpackage)=>{
     try{
         const updatepackage = await package.update(data,{where:{idpackage : idpackage}})
@@ -58,25 +46,20 @@ const updatepackage = async(data,idpackage)=>{
     }
 }
 
-const getpackageforuser = async (location, maincate) => {
-    try {
-        console.log(location,maincate);
-        const result = await package.findAll({ where: { location: location, maincategory: maincate } });
-        console.log('Number of packages found:', result.length);
-        return result;
-    } catch (err) {
-        console.error('Error in getpackageforuser:', err);
-        throw err; // Rethrow the error to handle it further up the call stack if needed
+const getpackageforuser = async(location , maincate)=>{
+    try{
+        const result = await package.findAll({where:{location : location , maincategory : maincate}})
+        return result
     }
-};
-
-
+        catch(err){
+            console.log(err);
+        }
+}
 
 module.exports={
     createPackage,
     deletepackage,
     getpackage,
     updatepackage,
-    getpackagedetails,
     getpackageforuser
 }
