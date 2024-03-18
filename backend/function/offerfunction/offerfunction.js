@@ -21,7 +21,7 @@ const updateoffer = async (data, id) => {
 };
 const getoffer = async (id) => {
     return offer.findAll({
-      where: { idoffer: +id } ,include:[imagesoffer , {model : maincategory,include:supcategory}]
+      where: { userProviderIduserProvider: +id } ,include:[imagesoffer , {model : maincategory,include:supcategory}]
     });
  
 };
