@@ -1,9 +1,9 @@
 const router = require('express').Router()
-const controller = require("../controller/controlleruser.js")
+const controller = require("../controller/controllerclient.js")
 
-router.post('/signup', controller.signUp)
+router.post('/signupUser', controller.signUp)
 
-router.post('/signin', controller.signIn)
+router.post('/signinUser', controller.signIn)
 
 
 

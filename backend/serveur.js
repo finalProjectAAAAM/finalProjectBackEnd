@@ -11,6 +11,7 @@ const Routeroffer = require('./router/routeroffer')
 const Routerpcuser = require('./router/routerpcuser');
 const routerUsers = require('./router/routerUsers')
 const routerProvider = require('./router/routerProviders')
+const RouterAuthMobile = require ("./router/routerAuthmobile")
 app.use(cors());
 app.use(express.json());
 app.use('/auth',RouterAuth)
@@ -18,8 +19,9 @@ app.use('/userProvider',Routeroffer)
 app.use('/cp',RouterPackage)
 app.use('/user',Routerpcuser)
 app.use("/", routerProvider);
-app.use("/", routerUsers);
-app.use("/", RouterClient);
+app.use("/use", routerUsers);
+app.use("/usermobile", RouterClient);
+app.use("/authmobile",RouterAuthMobile)
 
 
 app.use(bodyparser.urlencoded({ extended: false }));

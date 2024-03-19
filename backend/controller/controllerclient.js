@@ -2,7 +2,7 @@ require("dotenv").config()
 const jwt=require('jsonwebtoken')
 const bcrypt=require('bcrypt')
 
-const {getOneUser, addUser} = require("../function/log In-Out/signin+signup")
+const {getOneUser, addUser} = require("../function/log In-Out User/signin+signup")
 const secretKey = 'aziz10'
 console.log(secretKey)
 

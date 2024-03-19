@@ -1,4 +1,4 @@
-const {addToken,getToken} = require("../function/log In-Out/auth.js")
+const {addToken,getToken} = require("../function/log In-Out User/auth.js")
 
 const saveToken = (req, res) => {
     const id = req.params.id
