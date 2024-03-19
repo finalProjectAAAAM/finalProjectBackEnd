@@ -6,6 +6,7 @@ const app = express();
 const bodyparser = require("body-parser");
 const RouterAuth = require('./router/routerAuth')
 const RouterPackage = require('./router/routerpackage')
+const RouterClient = require("./router/routerUser")
 const Routeroffer = require('./router/routeroffer')
 const Routerpcuser = require('./router/routerpcuser');
 const routerUsers = require('./router/routerUsers')
@@ -18,7 +19,7 @@ app.use('/cp',RouterPackage)
 app.use('/user',Routerpcuser)
 app.use("/", routerProvider);
 app.use("/", routerUsers);
-
+app.use("/", RouterClient);
 
 
 app.use(bodyparser.urlencoded({ extended: false }));
