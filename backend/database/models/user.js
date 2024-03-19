@@ -25,19 +25,19 @@ const user = sequelize.define('user', {
     },
     status: {
       type: DataTypes.STRING(45),
-      allowNull: false,
+      allowNull: true,
     },
     lat: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     long: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
     token: {
       type: DataTypes.STRING(255),
-      allowNull: false,
+      allowNull: true,
     },
   },{ freezeTableName: true, timestamps: false });
   

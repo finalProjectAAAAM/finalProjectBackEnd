@@ -3,12 +3,17 @@ const cors = require("cors");
 const database = require('./database/database')
 const port = 3001
 const app = express();
-app.use(express.json());
-app.use(cors());
 const RouterPackage = require('./router/routerpackage')
 const Routeroffer = require('./router/routeroffer')
-app.use('/userProvider',Routeroffer)
+const Routeruser = require("./router/routerUser")
+const Routerauth = require("./router/routerAuth")
+app.use(cors());
+app.use(express.json());
 
+
+app.use('/userProvider',Routeroffer)
+app.use("/user",Routeruser)
+app.use("/auth",Routerauth)
 // app.use('/package',)
 app.listen(port, () => {
     console.log("the server is lessting on ", port);
