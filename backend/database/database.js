@@ -15,6 +15,7 @@ const {user_has_package} = require('./models/user_has_package');
 const {wishlist} = require('./models/wishlist')
 const {package_edit}=require('./models/package_edit')
 const {state} = require('./models/states')
+const {package_has_offer}=require('./models/package_has_offer')
 // reation between useProvider & offers ! 
 userProvider.hasMany(offer, {onDelete : 'cascade'})
 offer.belongsTo(userProvider)
@@ -24,19 +25,21 @@ userProvider.hasMany(package , {onDelete :'cascade'} )
 package.belongsTo(userProvider)
 
 // packages has MM realtion with offers ! 
-offer.belongsToMany(package,{through : 'package_has_offer' })
-package.belongsToMany(offer,{through : 'package_has_offer' })
+
+offer.belongsToMany(package,{through : package_has_offer , onDelete : 'cascade'})
+package.belongsToMany(offer,{through : package_has_offer ,onDelete : 'cascade'})
+
 
 // offer relations ! 
 
 // offer.hasMany(paipers)
-offer.hasMany(imagesoffer)
+offer.hasMany(imagesoffer,{onDelete : 'cascade'})
 imagesoffer.belongsTo(offer)
-offer.hasMany(maincategory)
+offer.hasMany(maincategory ,{onDelete : 'cascade'})
 maincategory.belongsTo(offer)
-maincategory.hasMany(supcategory)
+maincategory.hasMany(supcategory,{onDelete : 'cascade'})
 supcategory.belongsTo(maincategory)
-offer.hasMany(commentuseroffer)
+offer.hasMany(commentuseroffer,{onDelete : 'cascade'})
 commentuseroffer.belongsTo(offer)
 
 
@@ -51,9 +54,12 @@ package.belongsToMany(user , {through : wishlist})
 
 
 // user & package of the userProvider   
-user.belongsToMany(package , {through : user_has_package})
-package.belongsToMany(user , {through : user_has_package})
-packageuseredit.hasMany(user_has_package)
+
+user.belongsToMany(package , {through : user_has_package , onDelete :'cascade'})
+//-----------need to more see this with -------------
+package.belongsToMany(user , {through : user_has_package , onDelete :'cascade'})
+packageuseredit.hasMany(user_has_package,{onDelete :'cascade'})
+
 
 // package & comment ------------
 package.hasMany(commentuserpackage)
@@ -66,7 +72,9 @@ user.hasMany(packageuseredit)
 packageuseredit.belongsTo(user)
 
 // edited packages has MM realtion with offers ! 
-offer.belongsToMany(packageuseredit,{through : package_edit })
+
+offer.belongsToMany(packageuseredit,{through : package_edit , onDelete :'cascade'})
+
 packageuseredit.belongsToMany(offer,{through : package_edit })
 
 
@@ -87,16 +95,15 @@ state.belongsTo(offer)
 package.hasOne(state)
 state.belongsTo(package)
 
-
-
-
   // Sync Database
-  sequelize.sync({ alter : true}) // Set force to true if you want to drop and recreate tables
+  sequelize.sync({ force: true}) // Set force to true if you want to drop and recreate tables
     .then(() => {
       // user.bulkCreate([{
-      //   na
+
+      //   na 
       // }])
-      console.log('Database synchronized successfully.');
+      console.log('Database synchronized successfully.'); 
+
     })
     .catch((error) => {
       console.error('Error syncing database:', error);

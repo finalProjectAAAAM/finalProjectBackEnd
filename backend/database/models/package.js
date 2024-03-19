@@ -12,7 +12,7 @@ const package = sequelize.define('package', {
       allowNull: false,
     },
     location: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     duration:{
@@ -31,6 +31,10 @@ const package = sequelize.define('package', {
     rate : {
         type : DataTypes.INTEGER,
     },
+    imagemain : {
+      type :DataTypes.STRING,
+      allowNull:true
+    },
     places : {
         type : DataTypes.INTEGER,
         allowNull : false,
@@ -39,6 +43,29 @@ const package = sequelize.define('package', {
         type : DataTypes.INTEGER,
         defaultValue : 0
     },
+    maincategory : {
+      type : DataTypes.STRING,
+      allowNull : false,
+    },
+    sport:{
+      type : DataTypes.TINYINT,
+    },
+    music:{
+      type : DataTypes.TINYINT,
+      
+    },
+    art:{
+      type : DataTypes.TINYINT,
+      
+    },
+    food:{
+      type : DataTypes.TINYINT,
+      
+    },
+    camp:{
+      type : DataTypes.TINYINT,
+      
+    }
 
   },{ freezeTableName: true, timestamps: false });
   module.exports={package}

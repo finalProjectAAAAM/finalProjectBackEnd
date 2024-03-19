@@ -1,21 +1,32 @@
 const express = require("express");
 const cors = require("cors");
-const database = require('./database/database')
-const port = 3001
+const database = require("./database/database");
+const port = 3001;
 const app = express();
+const bodyparser = require("body-parser");
+const RouterAuth = require('./router/routerAuth')
 const RouterPackage = require('./router/routerpackage')
 const Routeroffer = require('./router/routeroffer')
-const Routeruser = require("./router/routerUser")
-const Routerauth = require("./router/routerAuth")
+const Routerpcuser = require('./router/routerpcuser');
+const routerUsers = require('./router/routerUsers')
+const routerProvider = require('./router/routerProviders')
 app.use(cors());
 app.use(express.json());
-
-
+app.use('/auth',RouterAuth)
 app.use('/userProvider',Routeroffer)
-app.use("/user",Routeruser)
-app.use("/auth",Routerauth)
-// app.use('/package',)
-app.listen(port, () => {
+app.use('/cp',RouterPackage)
+app.use('/user',Routerpcuser)
+app.use("/", routerProvider);
+app.use("/", routerUsers);
+
+
+
+app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.json());
+
+
+ app.listen(port, () => {
     console.log("the server is lessting on ", port);
   });
   
+
