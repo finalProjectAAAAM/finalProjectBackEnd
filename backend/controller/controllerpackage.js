@@ -1,5 +1,6 @@
-const {createPackage,deletepackage,getpackage,updatepackage, getpackageforuser } = require('../function/packagefunction/packagefunction');
+const {createPackage,deletepackage,getpackage,updatepackage, getpackageforuser ,getpackagepricefilter,getpackagepricecategories } = require('../function/packagefunction/packagefunction');
 const {createcomboofpackage,updatecomboofpackage } =require('../function/packagefunction/package_has_offers')
+
 const {package} = require('../database/models/package')
 module.exports={
     createPackage : async (req , res)=>{
@@ -130,13 +131,36 @@ module.exports={
        }
     },
     GetPackgeofUser : async (req, res)=>{
+
+        console.log(req.query);
         try{
-            const result = await getpackageforuser(req.body.location ,req.body.maincategory) ;
+            const result = await getpackageforuser(req.query.location,req.query.maincategory) ;
             res.status(200).json(result)
         }
         catch(err){
             console.log(err,"err in geting the details! ");
 
         }
+    },
+    GetPackagePriceFilter : async (req, res)=>{
+        try{
+           
+            const result = await getpackagepricefilter( req.query.location ,req.query.maincategory ,req.query.price) ;
+            res.status(200).json(result)
+        }
+        catch(err){
+            console.log(err,"err in geting the details! ");     
     }
+},
+GetPackagePriceCategories : async (req,res)=>{
+    try{
+        const result = await getpackagepricecategories(req.query.location ,req.query.maincategory ,req.query.price,
+            req.query.sport, req.query.music, req.query.art , req.query.food , req.query.camp) ;
+        res.status(200).json(result)
+    }
+    catch(err){
+        console.log(err,"err in geting the details! ");     
+    }
+}
+
 }

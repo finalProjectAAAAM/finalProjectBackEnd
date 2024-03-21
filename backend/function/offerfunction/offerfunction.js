@@ -31,7 +31,7 @@ const deleteoffer = async (id) => {
   return offer.destroy({ where: { idoffer: +id } });
 };
 
-module.exports = {
+module.exports = {    
   insertoffer,
   updateoffer,
   getoffer,
