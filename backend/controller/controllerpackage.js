@@ -2,6 +2,16 @@ const {createPackage,deletepackage,getpackage,updatepackage, getpackageforuser ,
 const {createcomboofpackage,updatecomboofpackage } =require('../function/packagefunction/package_has_offers')
 
 const {package} = require('../database/models/package')
+function convertToBoolean(value) {
+    switch (value.toLowerCase()) {
+        case 'true':
+            return true;
+        case 'false':
+            return false;
+        default:
+            return value;
+    }
+}
 module.exports={
     createPackage : async (req , res)=>{
         const obj = {
@@ -152,15 +162,40 @@ module.exports={
             console.log(err,"err in geting the details! ");     
     }
 },
-GetPackagePriceCategories : async (req,res)=>{
-    try{
-        const result = await getpackagepricecategories(req.query.location ,req.query.maincategory ,req.query.price,
-            req.query.sport, req.query.music, req.query.art , req.query.food , req.query.camp) ;
-        res.status(200).json(result)
-    }
-    catch(err){
-        console.log(err,"err in geting the details! ");     
+GetPackagePriceCategories: async (req, res) => {
+    console.log(req.query);
+
+    // Convert string representations of boolean values to actual booleans
+    const queryParams = {
+        location: req.query.location,
+        maincategory: req.query.maincategory,
+        price: parseInt(req.query.price), // Assuming price is numeric
+        sport: convertToBoolean(req.query.sport),
+        music: convertToBoolean(req.query.music),
+        art: convertToBoolean(req.query.art),
+        food: convertToBoolean(req.query.food),
+        camp: convertToBoolean(req.query.camp)
+    };
+
+    try {
+        const result = await getpackagepricecategories(
+            queryParams.location,
+            queryParams.maincategory,
+            queryParams.price,
+            queryParams.sport,
+            queryParams.music,
+            queryParams.art,
+            queryParams.food,
+            queryParams.camp
+        );
+
+        res.status(200).json(result);
+    } catch (err) {
+        console.log(err, "Error in getting the details!");
     }
 }
+
+// Function to convert string to boolean
+
 
 }

@@ -15,6 +15,7 @@ const Routerpcuser = require('./router/routerpcuser');
 const routerUsers = require('./router/routerUsers');
 const routerProvider = require('./router/routerProviders');
 const RouterPayment = require('./router/payment');
+const routerOrder = require('./router/Order');
 app.use('/auth',RouterAuth)
 app.use('/userProvider',Routeroffer)
 app.use('/cp',RouterPackage)
@@ -22,6 +23,7 @@ app.use('/user',Routerpcuser)
 app.use("/", routerProvider);
 app.use("/", routerUsers);
 app.use("/Paiment", RouterPayment);
+app.use('/Order',routerOrder);
  app.listen(port, () => {
     console.log("the server is lessting on ", port);
   });

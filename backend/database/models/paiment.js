@@ -16,7 +16,8 @@ const paiment = sequelize.define('paiment', {
       },
     qrcode : {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
+        defaultValue :"images qr"
       },
       // need to add the forgeinkeys
   },{ freezeTableName: true, timestamps: true });
