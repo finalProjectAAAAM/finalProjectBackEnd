@@ -36,6 +36,10 @@ const getpackage= async (id)=>{
    }
     
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 66862f43492dec151ff9c505151183a45fadd886
 const getpackagedetails= async (id)=>{
     try{
         const  detailtspackage = await package.findAll({where: {idpackage:id}}
@@ -46,6 +50,10 @@ const getpackagedetails= async (id)=>{
         console.log(err);
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 66862f43492dec151ff9c505151183a45fadd886
 const updatepackage = async(data,idpackage)=>{
     try{
         const updatepackage = await package.update(data,{where:{idpackage : idpackage}})
@@ -60,6 +68,13 @@ module.exports={
     createPackage,
     deletepackage,
     getpackage,
+<<<<<<< HEAD
     updatepackage,
     getpackagedetails,
+=======
+
+    updatepackage,
+    getpackagedetails,
+
+>>>>>>> 66862f43492dec151ff9c505151183a45fadd886
 }

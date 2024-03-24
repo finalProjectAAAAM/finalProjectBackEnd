@@ -12,7 +12,13 @@ const package = sequelize.define('package', {
       allowNull: false,
     },
     location: {
+<<<<<<< HEAD
       type: DataTypes.STRING,
+=======
+
+      type: DataTypes.STRING,
+
+>>>>>>> 66862f43492dec151ff9c505151183a45fadd886
       allowNull: false,
     },
     duration:{

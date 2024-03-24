@@ -20,6 +20,10 @@ const updateoffer = async (data, id) => {
   }
 };
 const getoffer = async (id) => {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 66862f43492dec151ff9c505151183a45fadd886
   return offer.findAll({
     where: { idoffer: +id },
     include: [{ model: imagesoffer, attributes: ["image"]}, { model: maincategory , include: supcategory}],
@@ -29,6 +33,10 @@ const getoffer = async (id) => {
 const deleteoffer = async (id) => {
   return offer.destroy({ where: { idoffer: +id } });
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 66862f43492dec151ff9c505151183a45fadd886
 module.exports = {
   insertoffer,
   updateoffer,
