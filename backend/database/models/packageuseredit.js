@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../connection')
+const sequelize = require('../connection');
+
 const packageuseredit = sequelize.define('packageuseredit', {
   idpackage: {
     type: DataTypes.INTEGER,
@@ -44,5 +45,6 @@ const packageuseredit = sequelize.define('packageuseredit', {
       defaultValue : 0
   }
 
-  },{ freezeTableName: true, timestamps: false });
-  module.exports={packageuseredit}
+}, { freezeTableName: true, timestamps: false });
+
+module.exports = { packageuseredit };

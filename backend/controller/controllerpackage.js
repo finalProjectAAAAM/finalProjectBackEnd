@@ -4,7 +4,7 @@ const {package} = require('../database/models/package')
 module.exports={
     createPackage : async (req , res)=>{
         const obj = {
-          package :{ 
+            package :{ 
             name: req.body.name,
             location: req.body.location, 
             duration: req.body.duration,
