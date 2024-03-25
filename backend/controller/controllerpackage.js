@@ -1,5 +1,5 @@
 
-const {createPackage,deletepackage,getpackage,updatepackage,getpackagedetails  } = require('../function/packagefunction/packagefunction');
+const {createPackage,deletepackage,getpackage,updatepackage,getpackagedetails,getpackageforuser,getpackagepricefilter,getpackagepricecategories  } = require('../function/packagefunction/packagefunction');
 const {createcomboofpackage,updatecomboofpackage } =require('../function/packagefunction/package_has_offers')
 
 const {package} = require('../database/models/package')
@@ -27,6 +27,7 @@ module.exports={
             status: req.body.status,
             places: req.body.places,
             imagemain : req.body.imagemain,
+            startday : req.body.startday,
             maincategory : req.body.maincategory,
             music : req.body.music,
             food : req.body.food,
@@ -81,6 +82,7 @@ module.exports={
               duration: req.body.duration,
               price: req.body.price,
               status: req.body.status,
+              startday : req.body.startday,
               places: req.body.places,
               maincategory : req.body.maincategory,
               music : req.body.music,
