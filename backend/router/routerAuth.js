@@ -1,9 +1,10 @@
 const express = require('express');
-const router = express.Router();
+const routermob = express.Router();
 const authController=require('../controller/controllerauth');
 
-router.post('/signup', authController.signUpUser);
-router.post('/login',authController.loginUser)
+routermob.post('/signup', authController.signUpUser);
+
+routermob.post('/login',authController.loginUser)
 
 
-module.exports = router
+module.exports = routermob
