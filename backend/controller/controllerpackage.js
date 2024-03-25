@@ -19,7 +19,8 @@ module.exports={
           package :{ 
 
             name: req.body.name,
-            location: req.body.location, 
+            location: req.body.location,
+            startday:req.body.startday, 
             duration: req.body.duration,
             price: req.body.price,
             status: req.body.status,
@@ -72,7 +73,8 @@ module.exports={
             package :{ 
 
               name: req.body.name,
-              location: req.body.location, 
+              location: req.body.location,
+              startday:req.body.startday,
               duration: req.body.duration,
               price: req.body.price,
               status: req.body.status,
@@ -193,7 +195,28 @@ GetPackagePriceCategories: async (req, res) => {
     } catch (err) {
         console.log(err, "Error in getting the details!");
     }
+},
+getPackagesByDate: async (req, res) => {
+    try {
+        const { date } = req.params;
+
+        // Parse the date string and convert it to UTC
+        const startDate = new Date(`${date} UTC`);
+        
+        // Find all packages for the specified date
+        const packages = await package.findAll({
+            where: {
+                startday: startDate
+            }
+        });
+
+        res.status(200).json(packages);
+    } catch (error) {
+        console.error('Error fetching packages by date:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
 }
+
 
 // Function to convert string to boolean
 
