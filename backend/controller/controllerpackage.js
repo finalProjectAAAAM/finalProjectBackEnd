@@ -1,8 +1,5 @@
 
-
 const {createPackage,deletepackage,getpackage,updatepackage,getpackagedetails  } = require('../function/packagefunction/packagefunction');
-
-const {createPackage,deletepackage,getpackage,updatepackage, getpackageforuser ,getpackagepricefilter,getpackagepricecategories } = require('../function/packagefunction/packagefunction');
 const {createcomboofpackage,updatecomboofpackage } =require('../function/packagefunction/package_has_offers')
 
 const {package} = require('../database/models/package')

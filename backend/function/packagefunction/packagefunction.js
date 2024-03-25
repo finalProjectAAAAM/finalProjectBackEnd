@@ -40,7 +40,7 @@ const getpackage= async (id)=>{
 
 
 
-const getpackagedetails= async (id)=>{
+
 const updatepackage = async(data,idpackage)=>{
 
     try{
@@ -52,7 +52,7 @@ const updatepackage = async(data,idpackage)=>{
     }
 }
 
-const updatepackage = async(data,idpackage)=>{
+
 
 const getpackageforuser = async(location , maincate)=>{
 
@@ -126,10 +126,10 @@ module.exports={
     deletepackage,
     getpackage,
     updatepackage,
-    getpackagedetails,
+    
     updatepackage,
     getpackageforuser,
     getpackagepricefilter,
-    getpackagepricecategories
+    getpackagepricecategories,
 
 }

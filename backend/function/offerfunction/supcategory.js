@@ -20,11 +20,7 @@ const updatesupcategory = async (data, id) => {
                 {namesub :ele.supcategory ,
                 maincategoryIdmaincategory : id}
                 );
-<<<<<<< HEAD
        
-=======
-
->>>>>>> 66862f43492dec151ff9c505151183a45fadd886
         });
 
         // Wait for all inserts to complete
