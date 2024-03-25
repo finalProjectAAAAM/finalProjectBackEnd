@@ -74,14 +74,12 @@ const getpackagepricefilter = async (location, maincategory, price) => {
 
 const getpackagepricecategories = async (location, maincategory, price, sport, music, art, food, camp) => {
     try {
-        // Construct the base where clause with common conditions
         const whereClause = {
             location: location,
             maincategory: maincategory,
             price: { [Op.lte]: price }
         };
 
-        // Construct the conditions for selected categories based on the parameters
         const selectedCategoryConditions = [];
         if (typeof sport === 'boolean') selectedCategoryConditions.push(literal('`sport` = ' + sport));
         if (typeof music === 'boolean') selectedCategoryConditions.push(literal('`music` = ' + music));
@@ -89,7 +87,6 @@ const getpackagepricecategories = async (location, maincategory, price, sport, m
         if (typeof food === 'boolean') selectedCategoryConditions.push(literal('`food` = ' + food));
         if (typeof camp === 'boolean') selectedCategoryConditions.push(literal('`camp` = ' + camp));
 
-        // Combine the base where clause with conditions for selected categories
         if (selectedCategoryConditions.length > 0) {
             whereClause[Op.and] = selectedCategoryConditions;
         }
@@ -101,7 +98,7 @@ const getpackagepricecategories = async (location, maincategory, price, sport, m
         return result;
     } catch (err) {
         console.log(err);
-        throw err; // Re-throw the error to propagate it to the caller
+        throw err; 
     }
 };
 
