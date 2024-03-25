@@ -15,6 +15,10 @@ const package = sequelize.define('package', {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    startday :{
+      type: DataTypes.DATE,
+      allowNull:false,
+    },
     duration:{
         type : DataTypes.INTEGER,
         allowNull:false,
