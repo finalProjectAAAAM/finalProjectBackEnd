@@ -6,6 +6,6 @@ RouterPackage.delete('/deletepackage/:id',controllerpackage.deletePackage)
 RouterPackage.get('/getpackage/:id',controllerpackage.getpackage)
 RouterPackage.put('/updatepackage/:id',controllerpackage.updatepackage)
 RouterPackage.get('/getpackages',controllerpackage.GetPackgeofUser) 
-
-
+RouterPackage.get('/getpackagesprice',controllerpackage.GetPackagePriceFilter)
+RouterPackage.get('/getpackagespriceandcategory',controllerpackage.GetPackagePriceCategories)
 module.exports=RouterPackage

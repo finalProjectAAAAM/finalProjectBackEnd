@@ -1,6 +1,17 @@
-const {createPackage,deletepackage,getpackage,updatepackage, getpackageforuser } = require('../function/packagefunction/packagefunction');
+const {createPackage,deletepackage,getpackage,updatepackage, getpackageforuser ,getpackagepricefilter,getpackagepricecategories } = require('../function/packagefunction/packagefunction');
 const {createcomboofpackage,updatecomboofpackage } =require('../function/packagefunction/package_has_offers')
+
 const {package} = require('../database/models/package')
+function convertToBoolean(value) {
+    switch (value.toLowerCase()) {
+        case 'true':
+            return true;
+        case 'false':
+            return false;
+        default:
+            return value;
+    }
+}
 module.exports={
     createPackage : async (req , res)=>{
         const obj = {
@@ -130,13 +141,61 @@ module.exports={
        }
     },
     GetPackgeofUser : async (req, res)=>{
+
+        console.log(req.query);
         try{
-            const result = await getpackageforuser(req.body.location ,req.body.maincategory) ;
+            const result = await getpackageforuser(req.query.location,req.query.maincategory) ;
             res.status(200).json(result)
         }
         catch(err){
             console.log(err,"err in geting the details! ");
 
         }
+    },
+    GetPackagePriceFilter : async (req, res)=>{
+        try{
+           
+            const result = await getpackagepricefilter( req.query.location ,req.query.maincategory ,req.query.price) ;
+            res.status(200).json(result)
+        }
+        catch(err){
+            console.log(err,"err in geting the details! ");     
     }
+},
+GetPackagePriceCategories: async (req, res) => {
+    console.log(req.query);
+
+    // Convert string representations of boolean values to actual booleans
+    const queryParams = {
+        location: req.query.location,
+        maincategory: req.query.maincategory,
+        price: parseInt(req.query.price), // Assuming price is numeric
+        sport: convertToBoolean(req.query.sport),
+        music: convertToBoolean(req.query.music),
+        art: convertToBoolean(req.query.art),
+        food: convertToBoolean(req.query.food),
+        camp: convertToBoolean(req.query.camp)
+    };
+
+    try {
+        const result = await getpackagepricecategories(
+            queryParams.location,
+            queryParams.maincategory,
+            queryParams.price,
+            queryParams.sport,
+            queryParams.music,
+            queryParams.art,
+            queryParams.food,
+            queryParams.camp
+        );
+
+        res.status(200).json(result);
+    } catch (err) {
+        console.log(err, "Error in getting the details!");
+    }
+}
+
+// Function to convert string to boolean
+
+
 }
