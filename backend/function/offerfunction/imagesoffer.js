@@ -27,7 +27,7 @@ const updateimages = async (data, offerId) => {
 
         console.log('Images updated successfully');
     } catch (error) {
-       
+    
         console.error('Error updating images:', error);
     }
 };

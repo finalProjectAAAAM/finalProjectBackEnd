@@ -25,10 +25,15 @@ userProvider.hasMany(package , {onDelete :'cascade'} )
 package.belongsTo(userProvider)
 
 // packages has MM realtion with offers ! 
+<<<<<<< HEAD
+offer.belongsToMany(package,{through : package_has_offer , onDelete : 'cascade'})
+package.belongsToMany(offer,{through : package_has_offer ,onDelete : 'cascade'})
+=======
 
 offer.belongsToMany(package,{through : package_has_offer , onDelete : 'cascade'})
 package.belongsToMany(offer,{through : package_has_offer ,onDelete : 'cascade'})
 
+>>>>>>> 66862f43492dec151ff9c505151183a45fadd886
 
 // offer relations ! 
 
@@ -54,12 +59,18 @@ package.belongsToMany(user , {through : wishlist})
 
 
 // user & package of the userProvider   
+<<<<<<< HEAD
+=======
 
+>>>>>>> 66862f43492dec151ff9c505151183a45fadd886
 user.belongsToMany(package , {through : user_has_package , onDelete :'cascade'})
 //-----------need to more see this with -------------
 package.belongsToMany(user , {through : user_has_package , onDelete :'cascade'})
 packageuseredit.hasMany(user_has_package,{onDelete :'cascade'})
+<<<<<<< HEAD
+=======
 
+>>>>>>> 66862f43492dec151ff9c505151183a45fadd886
 
 // package & comment ------------
 package.hasMany(commentuserpackage)
@@ -72,9 +83,13 @@ user.hasMany(packageuseredit)
 packageuseredit.belongsTo(user)
 
 // edited packages has MM realtion with offers ! 
+<<<<<<< HEAD
+offer.belongsToMany(packageuseredit,{through : package_edit , onDelete :'cascade'})
+=======
 
 offer.belongsToMany(packageuseredit,{through : package_edit , onDelete :'cascade'})
 
+>>>>>>> 66862f43492dec151ff9c505151183a45fadd886
 packageuseredit.belongsToMany(offer,{through : package_edit })
 
 
@@ -99,11 +114,17 @@ state.belongsTo(package)
   sequelize.sync({ alter: true}) // Set force to true if you want to drop and recreate tables
     .then(() => {
       // user.bulkCreate([{
+<<<<<<< HEAD
+      //   na 
+      // }])
+      console.log('Database synchronized successfully.'); 
+=======
 
       //   na 
       // }])
       console.log('Database synchronized successfully.'); 
 
+>>>>>>> 66862f43492dec151ff9c505151183a45fadd886
     })
     .catch((error) => {
       console.error('Error syncing database:', error);

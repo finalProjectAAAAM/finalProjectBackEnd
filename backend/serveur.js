@@ -6,8 +6,24 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 const bodyparser = require("body-parser");
-app.use(bodyparser.urlencoded({ extended: false }));
+app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
+const RouterAuth = require('./router/routerAuth')
+app.use('/auth',RouterAuth)
+const RouterPackage = require('./router/routerpackage')
+const Routeroffer = require('./router/routeroffer')
+const RouterComment = require('./router/routerComment')
+const {createComments}=require ("./controller/controllercomment")
+app.post('/createComment',createComments)
+app.use('/userProvider',Routeroffer)
+app.use('/cp',RouterPackage)
+// app.use('/package',)
+app.use("/",RouterComment)
+app.listen(port, () => {
+    console.log("the server is lessting on ", port);
+  });
+const RouterPackage = require('./router/routerpackage')
+const Routeroffer = require('./router/routeroffer')
 const RouterAuth = require('./router/routerAuth');
 const RouterPackage = require('./router/routerpackage');
 const Routeroffer = require('./router/routeroffer');
@@ -28,4 +44,3 @@ app.use('/Order',routerOrder);
     console.log("the server is lessting on ", port);
   });
   
-
