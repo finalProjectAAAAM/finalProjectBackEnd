@@ -96,7 +96,7 @@ package.hasOne(state)
 state.belongsTo(package)
 
   // Sync Database
-  sequelize.sync({ force: true}) // Set force to true if you want to drop and recreate tables
+  sequelize.sync({ alter: true}) // Set force to true if you want to drop and recreate tables
     .then(() => {
       // user.bulkCreate([{
 
