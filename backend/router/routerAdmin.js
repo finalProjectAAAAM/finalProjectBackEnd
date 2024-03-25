@@ -1,9 +1,9 @@
 const adminRoute=require('express').Router()
-const {contactAdmin}=require("../controller/contactAdmincontroller")
+const Routercontact=require("../controller/contactAdmincontroller")
 
 
 
 
-adminRoute.post('/admin/contactAdmin', contactAdmin)
+adminRoute.post('/admin/contactAdmin', Routercontact.contactAdmin)
 
 module.exports=adminRoute

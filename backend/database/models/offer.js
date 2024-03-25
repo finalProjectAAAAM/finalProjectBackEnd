@@ -59,5 +59,5 @@ const offer = sequelize.define('offer', {
         type : DataTypes.INTEGER,
         defaultValue : 0
     },
-  },{ freezeTableName: true, timestamps: false });
-  module.exports={offer}
+    },{ freezeTableName: true, timestamps: false });
+    module.exports={offer}

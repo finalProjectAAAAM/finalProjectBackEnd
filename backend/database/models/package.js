@@ -15,6 +15,10 @@ const package = sequelize.define('package', {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    startday :{
+      type: DataTypes.DATE,
+      allowNull:false,
+    },
     duration:{
         type : DataTypes.INTEGER,
         allowNull:false,
@@ -48,22 +52,22 @@ const package = sequelize.define('package', {
       allowNull : false,
     },
     sport:{
-      type : DataTypes.TINYINT,
+      type : DataTypes.BOOLEAN,
     },
     music:{
-      type : DataTypes.TINYINT,
+      type : DataTypes.BOOLEAN,
       
     },
     art:{
-      type : DataTypes.TINYINT,
+      type : DataTypes.BOOLEAN,
       
     },
     food:{
-      type : DataTypes.TINYINT,
+      type : DataTypes.BOOLEAN,
       
     },
     camp:{
-      type : DataTypes.TINYINT,
+      type : DataTypes.BOOLEAN,
       
     }
 
