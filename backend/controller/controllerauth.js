@@ -17,7 +17,7 @@ const signUpUser = async (req, res) => {
     console.log(pwd, "testtesttest");
     // let salt = await bcrypt.genSalt(10)
     const hasshpass = await bcrypt.hash("passworddddd", 5);
-    console.log(hasshpass);
+   
     if (hasshpass) {
         const newuser = await inserUserProvider( {
         name: name,
