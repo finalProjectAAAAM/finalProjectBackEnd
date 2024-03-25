@@ -18,7 +18,6 @@ const routerUsers = require('./router/routerUsers');
 const routerProvider = require('./router/routerProviders');
 const RouterPayment = require('./router/payment');
 const routerOrder = require('./router/Order');
-
 app.use('/auth',RouterAuth)
 app.use('/userProvider',Routeroffer)
 app.use('/cp',RouterPackage)
