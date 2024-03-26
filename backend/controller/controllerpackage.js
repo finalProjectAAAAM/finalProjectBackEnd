@@ -1,4 +1,5 @@
-const {createPackage,deletepackage,getpackage,updatepackage, getpackageforuser ,getpackagepricefilter,getpackagepricecategories } = require('../function/packagefunction/packagefunction');
+
+const {createPackage,deletepackage,getpackage,updatepackage,getpackagedetails  } = require('../function/packagefunction/packagefunction');
 const {createcomboofpackage,updatecomboofpackage } =require('../function/packagefunction/package_has_offers')
 
 const {package} = require('../database/models/package')
@@ -15,6 +16,7 @@ function convertToBoolean(value) {
 module.exports={
     createPackage : async (req , res)=>{
         const obj = {
+
 
           package :{ 
 
@@ -39,6 +41,7 @@ module.exports={
             // userProviderIduserProvider : req.params.id
             // adminIdadmin : req.params.id
 
+
           },
           offers:[
 
@@ -46,6 +49,7 @@ module.exports={
             { offer: req.body.offer2 },
             { offer: req.body.offer3 },
             { offer: req.body.offer4 },
+
 
           ],
           }
@@ -56,6 +60,7 @@ module.exports={
             const packagecreated = await createPackage(obj.package)
             console.log(packagecreated, 'this is the package ');
             console.log(obj.offers);
+
 
            if ((obj.offers).length > 0) {
             await createcomboofpackage(obj.offers, packagecreated.dataValues.idpackage)
@@ -112,7 +117,6 @@ module.exports={
         try{
             const uppackage = await updatepackage(obj.package , idpackage)
             if ((obj.offers).length > 0) {
-
                  await updatecomboofpackage(obj.offers,idpackage)
 
             }
