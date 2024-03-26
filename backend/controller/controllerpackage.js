@@ -1,7 +1,7 @@
 
 const {createPackage,deletepackage,getpackage,updatepackage,getpackagedetails,getpackageforuser,getpackagepricefilter,getpackagepricecategories  } = require('../function/packagefunction/packagefunction');
 const {createcomboofpackage,updatecomboofpackage } =require('../function/packagefunction/package_has_offers')
-
+const { Op } = require('sequelize');
 const {package} = require('../database/models/package')
 function convertToBoolean(value) {
     switch (value.toLowerCase()) {
@@ -21,7 +21,8 @@ module.exports={
           package :{ 
 
             name: req.body.name,
-            location: req.body.location, 
+            location: req.body.location,
+            startday:req.body.startday, 
             duration: req.body.duration,
             price: req.body.price,
             status: req.body.status,
@@ -78,7 +79,8 @@ module.exports={
             package :{ 
 
               name: req.body.name,
-              location: req.body.location, 
+              location: req.body.location,
+              startday:req.body.startday,
               duration: req.body.duration,
               price: req.body.price,
               status: req.body.status,
@@ -199,9 +201,60 @@ GetPackagePriceCategories: async (req, res) => {
     } catch (err) {
         console.log(err, "Error in getting the details!");
     }
+},
+getPackagesByDate: async (req, res) => {
+    try {
+        const { date } = req.params;
+
+        // Parse the date string and convert it to UTC
+        const startDate = new Date(`${date} UTC`);
+        
+        // Find all packages for the specified date
+        const packages = await package.findAll({
+            where: {
+                startday: startDate
+            }
+        });
+
+        res.status(200).json(packages);
+    } catch (error) {
+        console.error('Error fetching packages by date:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+},
+getPackagesByDateAndAfter: async (req, res) => {
+    try {
+        const { date } = req.params;
+
+        // Parse the date string and convert it to UTC
+        const startDate = new Date(`${date} UTC`);
+        
+        // Set the start date to the beginning of the specified day
+        startDate.setUTCHours(0, 0, 0, 0);
+        
+        // Calculate the end date (7 days after the start date)
+        const endDate = new Date(startDate);
+        endDate.setDate(endDate.getDate() + 7);
+
+        // Find all packages that start after the specified date and continue for 7 days
+        const packages = await package.findAll({
+            where: {
+                startday: {
+                    [Op.gte]: startDate, // Packages starting on or after startDate
+                    [Op.lt]: endDate      // Packages starting before endDate
+                }
+            }
+        });
+
+        res.status(200).json(packages);
+    } catch (error) {
+        console.error('Error fetching packages by date:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
 }
 
-// Function to convert string to boolean
+
+
 
 
 }

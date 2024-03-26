@@ -14,7 +14,7 @@ module.exports = {
     console.log(req.params);
     try {
       const result = await userProvider.findOne({
-        where: { id: req.params.id },
+        where: { iduserProvider: req.params.id },
         include: offer,
       });
       res.json(result);
