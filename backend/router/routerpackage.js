@@ -9,6 +9,6 @@ RouterPackage.get('/getpackages',controllerpackage.GetPackgeofUser)
 RouterPackage.get('/getpackagesprice',controllerpackage.GetPackagePriceFilter)
 RouterPackage.get('/getpackagespriceandcategory',controllerpackage.GetPackagePriceCategories)
 RouterPackage.get('/getPackagesByDate/:date',controllerpackage.getPackagesByDate)
-
+RouterPackage.get('/getPackagesByDateAndAfter/:date',controllerpackage.getPackagesByDateAndAfter)
 
 module.exports=RouterPackage
