@@ -39,7 +39,16 @@ const getpackage= async (id)=>{
     
 }
 
-
+const getpackagedetails= async (id)=>{
+    try{
+        const  detailtspackage = await package.findAll({where: {idpackage:id}}
+        )
+        return detailtspackage
+    }
+    catch(err){
+        console.log(err);
+    }
+}
 
 
 const updatepackage = async(data,idpackage)=>{
@@ -119,15 +128,26 @@ const AllCities = async(location , maincate)=>{
             console.log(err);
         }
 }
+const Allpackage = async(location , maincate)=>{
+    try{
+        const result = await package.findAll({})
+        return result
+    }
+        catch(err){
+            console.log(err);
+        }
+}
 
 
 
 module.exports={
+    Allpackage,
     AllCities,
     createPackage,
     deletepackage,
     getpackage,
     updatepackage,
+    getpackagedetails,
     updatepackage,
     getpackageforuser,
     getpackagepricefilter,
