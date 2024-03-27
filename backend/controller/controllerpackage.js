@@ -1,5 +1,5 @@
 
-const {createPackage,deletepackage,getpackage,updatepackage,getpackagedetails  } = require('../function/packagefunction/packagefunction');
+const {createPackage,deletepackage,getpackage,updatepackage,getpackagedetails,AllCities  } = require('../function/packagefunction/packagefunction');
 const {createcomboofpackage,updatecomboofpackage } =require('../function/packagefunction/package_has_offers')
 
 const {package} = require('../database/models/package')
@@ -197,8 +197,18 @@ GetPackagePriceCategories: async (req, res) => {
     } catch (err) {
         console.log(err, "Error in getting the details!");
     }
-}
+},
+allCity : async (req, res)=>{
+    try{
+        const result = await AllCities() ;
+        console.log(result)
+        res.status(200).json(result)
+    }
+    catch(err){
+        console.log(err,"err in geting the details! ");
 
+    }
+},
 // Function to convert string to boolean
 
 

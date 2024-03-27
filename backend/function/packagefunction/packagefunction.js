@@ -5,6 +5,7 @@ const { Op ,literal } = require('sequelize');
 const { imagesoffer } = require("../../database/models/imagesoffer");
 const { maincategory } = require("../../database/models/maincategory");
 const { supcategory } = require("../../database/models/supcategory");
+const { state } = require('../../database/models/states');
 
 const createPackage =  async (data)=>{
     try{
@@ -109,24 +110,24 @@ const getpackagepricecategories = async (location, maincategory, price, sport, m
         throw err; 
     }
 };
-
-
-
- 
-
-
-
-
-
+const AllCities = async(location , maincate)=>{
+    try{
+        const result = await state.findAll({})
+        return result
+    }
+        catch(err){
+            console.log(err);
+        }
+}
 
 
 
 module.exports={
+    AllCities,
     createPackage,
     deletepackage,
     getpackage,
     updatepackage,
-    
     updatepackage,
     getpackageforuser,
     getpackagepricefilter,

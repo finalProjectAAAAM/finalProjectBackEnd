@@ -10,7 +10,12 @@ const state = sequelize.define('state', {
     namestate : {
         type : DataTypes.STRING,
         allowNull : false,
-
+        
     }
+    ,
+    images : {
+      type : DataTypes.STRING,
+      allowNull : false,
+  }
 },{ freezeTableName: true, timestamps: false })
 module.exports={state}
